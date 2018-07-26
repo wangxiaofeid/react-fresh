@@ -6,5 +6,8 @@ const config = require('../config')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
-  plugins: []
+  output: {
+    chunkFilename: 'js/[name].[chunkhash:8].js',
+  },
+  // plugins: []
 });

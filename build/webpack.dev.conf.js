@@ -6,10 +6,13 @@ const config = require('../config')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
+  output: {
+    chunkFilename: 'js/[name].js',
+  },
   devServer: {
     inline:true,
     port: config.dev.port
   },
   devtool: 'eval-source-map',
-  plugins: []
+  // plugins: []
 });
