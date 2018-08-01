@@ -7,6 +7,7 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "webpack --config build/webpack.prod.conf.js",
+    "dll": "webpack -p --config build/webpack.dll.config.js",
     "build:watch": "webpack --config build/webpack.prod.conf.js --watch --progress"
   },
   "repository": {
@@ -39,7 +40,9 @@
     "@babel/preset-stage-0": "^7.0.0-beta.54",
     "babel-loader": "next",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "less-loader": "^4.1.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

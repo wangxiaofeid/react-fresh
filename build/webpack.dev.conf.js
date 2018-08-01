@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('../config')
 
@@ -11,8 +12,16 @@ module.exports = merge(baseWebpackConfig, {
   },
   devServer: {
     inline:true,
-    port: config.dev.port
+    port: config.dev.port,
+    contentBase: path.join(__dirname, '../dist'),
+    open: true
   },
   devtool: 'eval-source-map',
-  // plugins: []
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    })
+  ]
 });

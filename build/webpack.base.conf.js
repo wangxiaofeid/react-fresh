@@ -12,6 +12,10 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  plugins: [new webpack.DllReferencePlugin({
+    context : __dirname,
+    manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
+  })],
   output: {
     path: config.build.assetsRoot,
     filename: 'js/[name].js',
@@ -25,29 +29,29 @@ module.exports = {
       '@': resolve('src'),
     }
   },
-  optimization: {
-    sideEffects: false,
-    splitChunks: {
-      chunks     :'async',
-      minSize    : 30000,
-      minChunks  : 1,
-      cacheGroups: {
-        common: {
-          name    : 'common',
-          test    : /node_modules/,
-          chunks  : 'initial',
-          priority: -10,
-          enforce : true
-        },
-        styles: {
-          name   : 'styles',
-          test   : /(\.less|\.css)$/,
-          chunks : 'all',
-          enforce: true,
-        }
-      }
-    }
-  },
+  // optimization: {
+  //   sideEffects: false,
+  //   splitChunks: {
+  //     chunks     :'async',
+  //     minSize    : 30000,
+  //     minChunks  : 1,
+  //     cacheGroups: {
+  //       common: {
+  //         name    : 'common',
+  //         test    : /node_modules/,
+  //         chunks  : 'initial',
+  //         priority: -10,
+  //         enforce : true
+  //       },
+  //       styles: {
+  //         name   : 'styles',
+  //         test   : /(\.less|\.css)$/,
+  //         chunks : 'all',
+  //         enforce: true,
+  //       }
+  //     }
+  //   }
+  // },
   module: {
     rules: [
       {
