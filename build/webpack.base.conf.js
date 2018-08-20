@@ -1,7 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const config = require('../config')
-const utils = require('./utils');
+const utils = require('./utils')
+const devMode = process.env.NODE_ENV !== 'production'
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -13,9 +16,16 @@ module.exports = {
     app: './src/main.js'
   },
   plugins: [new webpack.DllReferencePlugin({
-    context : __dirname,
-    manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
-  })],
+      context : __dirname,
+      manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
+    }),
+    new ExtractTextPlugin({
+      filename: (getPath) => {
+        return getPath('css/style.css').replace('css/js', 'css');
+      }
+    }),
+    new OptimizeCSSAssetsPlugin({})
+  ],
   output: {
     path: config.build.assetsRoot,
     filename: 'js/[name].js',
@@ -63,21 +73,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ 
-          loader: 'style-loader' 
-        }, { 
-          loader: 'css-loader' 
-        }]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
+        })
       },
       {
         test: /\.less$/,
-        use: [{ 
-          loader: 'style-loader' 
-        }, { 
-          loader: 'css-loader' 
-        }, { 
-          loader: 'less-loader' 
-        }]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
+        })
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
