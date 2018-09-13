@@ -8,8 +8,8 @@ const Other = SplitComponent(() => import(/* webpackChunkName: "other" */'./othe
 @observer
 export default class Home extends Component {
   render() {
-    return <div>
-      <div onClick={() => {
+    return <div className="home">
+      <div className="botton" onClick={() => {
         this.props.appStore.plus()
       }}>{this.props.appStore.num}</div>
       <Other />

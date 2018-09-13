@@ -19,16 +19,16 @@ module.exports = {
       manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css"
     })
   ],
   output: {
     path: config.build.assetsRoot,
     filename: 'js/[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: devMode
+      ? config.dev.assetsPublicPath
+      : config.build.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -36,29 +36,6 @@ module.exports = {
       '@': resolve('src'),
     }
   },
-  // optimization: {
-  //   sideEffects: false,
-  //   splitChunks: {
-  //     chunks     :'async',
-  //     minSize    : 30000,
-  //     minChunks  : 1,
-  //     cacheGroups: {
-  //       common: {
-  //         name    : 'common',
-  //         test    : /node_modules/,
-  //         chunks  : 'initial',
-  //         priority: -10,
-  //         enforce : true
-  //       },
-  //       styles: {
-  //         name   : 'styles',
-  //         test   : /(\.less|\.css)$/,
-  //         chunks : 'all',
-  //         enforce: true,
-  //       }
-  //     }
-  //   }
-  // },
   module: {
     rules: [
       {
@@ -70,24 +47,19 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-          // you can specify a publicPath here
-          // by default it use publicPath in webpackOptions.output
-          // options: {
-          //   publicPath: '../'
-          // }
-        },
-        "css-loader"]
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          "css-loader",
+          // 'postcss-loader'
+        ]
       },
       {
         test: /\.less$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader', 
-          'less-loader'
+          'less-loader',
+          // 'postcss-loader'
         ]
       },
       {
