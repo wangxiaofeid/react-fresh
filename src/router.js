@@ -12,6 +12,10 @@ export default function Router(props) {
     <Route
       key="home"
       path="/home"
-      component={SplitComponent(() => import(/* webpackChunkName: "home" */'./pages/home'))} />
+      component={SplitComponent(() => import(/* webpackChunkName: "home" */'./pages/home'))} />,
+    <Route
+      key="home2"
+      path="/home2"
+      component={SplitComponent(() => import(/* webpackChunkName: "home2" */'./pages/home2'))} />
   ]
 }

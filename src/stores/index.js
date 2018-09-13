@@ -1,5 +1,4 @@
 import { observable, action } from "mobx"
-import { Z_PARTIAL_FLUSH } from "zlib";
 
 export class AppStore {
   @observable num = 1;

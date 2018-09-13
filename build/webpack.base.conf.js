@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const config = require('../config')
 const utils = require('./utils')
 const devMode = process.env.NODE_ENV !== 'production'
@@ -19,12 +18,10 @@ module.exports = {
       context : __dirname,
       manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
     }),
-    new ExtractTextPlugin({
-      filename: (getPath) => {
-        return getPath('css/style.css').replace('css/js', 'css');
-      }
-    }),
-    new OptimizeCSSAssetsPlugin({})
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ],
   output: {
     path: config.build.assetsRoot,
@@ -73,17 +70,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader']
-        })
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          // you can specify a publicPath here
+          // by default it use publicPath in webpackOptions.output
+          // options: {
+          //   publicPath: '../'
+          // }
+        },
+        "css-loader"]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader']
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          'css-loader', 
+          'less-loader'
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
