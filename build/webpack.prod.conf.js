@@ -13,14 +13,14 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     chunkFilename: 'js/[name].[chunkhash:8].js',
   },
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   optimization: {
     minimizer: [
-      // new UglifyJsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: true // set to true if you want JS source maps
-      // }),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
       new OptimizeCSSAssetsPlugin({
         cssProcessor: {
           process: function (css) {

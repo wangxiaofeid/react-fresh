@@ -8,7 +8,8 @@
     "start": "npm run dev",
     "build": "export NODE_ENV=production && webpack --config build/webpack.prod.conf.js",
     "dll": "webpack -p --config build/webpack.dll.config.js",
-    "build:watch": "export NODE_ENV=production && webpack --config build/webpack.prod.conf.js --watch --progress"
+    "build:watch": "export NODE_ENV=production && webpack --config build/webpack.prod.conf.js --watch --progress",
+    "push": "git add . && git commit -m ${m} && git push"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,9 @@
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "normalize.css": "^8.0.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-loadable": "^5.4.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-loadable": "^5.5.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1"
   },
