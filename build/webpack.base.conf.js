@@ -42,7 +42,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader?cacheDirectory=true'
         }
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: devMode ? utils.assetsPath('img/[name].[ext]') : utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
@@ -75,7 +75,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: devMode ? utils.assetsPath('media/[name].[ext]') : utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {
@@ -83,7 +83,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: devMode ? utils.assetsPath('fonts/[name].[ext]') : utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]

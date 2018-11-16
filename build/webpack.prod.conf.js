@@ -16,11 +16,11 @@ module.exports = merge(baseWebpackConfig, {
   devtool: 'eval-source-map',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      }),
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: true // set to true if you want JS source maps
+      // }),
       new OptimizeCSSAssetsPlugin({
         cssProcessor: {
           process: function (css) {
