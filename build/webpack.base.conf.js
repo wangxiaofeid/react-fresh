@@ -36,6 +36,7 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  externals: {},
   module: {
     rules: [
       {

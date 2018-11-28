@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import SplitComponent from "@/utils/splitComponent";
+import { plus } from "@xiaofei.wang/float.js";
 
 const Other = SplitComponent(() => import(/* webpackChunkName: "other" */'./other'))
 
@@ -13,6 +14,7 @@ export default class Home extends Component {
         this.props.appStore.plus()
       }}>{this.props.appStore.num}</div>
       <Other />
+      {plus(.2, .1)}
     </div>
   }
 }
