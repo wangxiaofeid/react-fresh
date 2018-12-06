@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const config = require('../config')
 const utils = require('./utils')
 const devMode = process.env.NODE_ENV !== 'production'
@@ -14,14 +15,16 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
-  plugins: [new webpack.DllReferencePlugin({
+  plugins: [
+    new webpack.DllReferencePlugin({
       context : __dirname,
       manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
       chunkFilename: "css/[id].css"
-    })
+    }),
+    new HardSourceWebpackPlugin()
   ],
   output: {
     path: config.build.assetsRoot,
