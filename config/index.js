@@ -7,7 +7,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/*': {
-        target: 'http://dev-admin.qingbest.com',
+        target: 'http://rap2api.taobao.org/app/mock/19489',
         changeOrigin: true,
         secure: false
       }

@@ -15,8 +15,11 @@ module.exports = merge(baseWebpackConfig, {
     inline:true,
     port: config.dev.port,
     contentBase: path.join(__dirname, '../dist'),
-    open: true,
-    proxy: config.proxyTable || {}
+    open: config.dev.autoOpenBrowser,
+    overlay: config.dev.errorOverlay
+      ? { warnings: false, errors: true }
+      : false,
+    proxy: config.dev.proxyTable || {}
   },
   devtool: 'eval-source-map',
   plugins: [

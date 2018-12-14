@@ -2,20 +2,18 @@ import React from "react";
 import { Route, Redirect } from 'react-router-dom'
 import SplitComponent from "./utils/splitComponent";
 
-export default function Router(props) {
-  return [
-    <Route
-      key="index"
-      path="/"
-      exact
-      render={() => <Redirect to="/home" />} />,
-    <Route
-      key="home"
-      path="/home"
-      component={SplitComponent(() => import(/* webpackChunkName: "home" */'./pages/home'))} />,
-    <Route
-      key="home2"
-      path="/home2"
-      component={SplitComponent(() => import(/* webpackChunkName: "home2" */'./pages/home2'))} />
-  ]
+const router = [<Route
+  key="index"
+  path="/"
+  exact
+  render={() => <Redirect to="/demo" />} />];
+
+const req = require.context('./pages', true, /router$/);
+req.keys().map(key => {
+  const r = req(key).default;
+  router.push(r);
+});
+
+export default function Router() {
+  return router
 }

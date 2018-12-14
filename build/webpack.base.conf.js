@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const config = require('../config')
 const utils = require('./utils')
 const devMode = process.env.NODE_ENV !== 'production'
@@ -24,7 +25,12 @@ module.exports = {
       filename: "css/[name].css",
       chunkFilename: "css/[id].css"
     }),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin(),
+    new webpack.ContextReplacementPlugin(
+      /moment[\/\\]locale$/,
+      /zh-en|en-us/
+    ),
+    new LodashModuleReplacementPlugin()
   ],
   output: {
     path: config.build.assetsRoot,
@@ -62,7 +68,7 @@ module.exports = {
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader', 
-          'less-loader',
+          { loader: 'less-loader', options: { javascriptEnabled: true } },
           // 'postcss-loader'
         ]
       },

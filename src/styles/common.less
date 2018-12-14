@@ -1,0 +1,79 @@
+@import "./theme.less";
+
+.hidden{
+  display: none;
+}
+
+.fr{
+  float: right;
+}
+
+.ml10{
+  margin-left: 10px;
+}
+
+.ml20{
+  margin-left: 20px;
+}
+
+.pr5{
+  position: relative;
+  top: 4px;
+}
+
+.clearfix {
+  zoom:1;
+  &:after, &:before{
+    content: " ";
+    display: table
+  }
+  &:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0
+  }
+}
+
+.page{
+  &-form{
+    .new-btns{
+      margin-bottom: 20px;
+    }
+  }
+  .action-btns{
+    a{
+      margin-right: 8px;
+    }
+  }
+}
+
+.edit-box{
+  .formitem{
+    margin-top: 20px;
+    .label{
+      color: #999;
+      width: 90px;
+      line-height: 28px;
+      float: left;
+      padding: 0;
+      text-align: left;
+    }
+    .right{
+      margin-left: 90px;
+      line-height: 28px;
+    }
+    .c-red{
+      color: red;
+    }
+    .c-blue{
+      color: blue;
+    }
+  }
+  .td-input, .td-select{
+    width: 360px;
+  }
+  .td-breadcrumb a {
+    color: @blue;
+  }
+}
