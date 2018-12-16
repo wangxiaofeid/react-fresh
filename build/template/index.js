@@ -68,7 +68,7 @@ export default class __pageName2__ extends React.Component{
           <__pageName2__SearchForm submit={this.submit}/>
         </div>
         
-        <div class="page-content">
+        <div className="page-content">
           {
             this.renderTable()
           }

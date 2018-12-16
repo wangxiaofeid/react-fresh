@@ -25,7 +25,7 @@ export default class App extends Component {
 
   renderMenu = item => {
     if (item.link) {
-      return <Menu.Item key={item.icon}>
+      return <Menu.Item key={item.key}>
         <Link to={item.link}>
           {item.icon && <Icon type={item.icon} />}
           <span>{item.label}</span>

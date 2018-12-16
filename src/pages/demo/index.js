@@ -68,7 +68,7 @@ export default class Demo extends React.Component{
           <DemoSearchForm submit={this.submit}/>
         </div>
         
-        <div class="page-content">
+        <div className="page-content">
           {
             this.renderTable()
           }
