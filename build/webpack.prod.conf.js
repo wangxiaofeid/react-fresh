@@ -5,6 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('../config')
@@ -14,7 +16,7 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     chunkFilename: 'js/[name].[chunkhash:8].js',
   },
-  devtool: 'source-map',
+  devtool: config.build.devtool,
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -45,6 +47,11 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: path.resolve(__dirname, '../index.html')
     }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css"
+    }),
+    new LodashModuleReplacementPlugin(),
     new BundleAnalyzerPlugin()
   ]
 });

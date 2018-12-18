@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const config = require('../config')
 const utils = require('./utils')
 const devMode = process.env.NODE_ENV !== 'production'
@@ -12,6 +11,7 @@ function resolve (dir) {
 }
 
 module.exports = {
+  cache: true,
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -21,16 +21,11 @@ module.exports = {
       context : __dirname,
       manifest: path.resolve(__dirname, '../dist/dll', 'manifest.json')
     }),
-    new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-      chunkFilename: "css/[id].css"
-    }),
     new HardSourceWebpackPlugin(),
     new webpack.ContextReplacementPlugin(
       /moment[\/\\]locale$/,
       /zh-en|en-us/
-    ),
-    new LodashModuleReplacementPlugin()
+    )
   ],
   output: {
     path: config.build.assetsRoot,

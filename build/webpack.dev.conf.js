@@ -19,14 +19,20 @@ module.exports = merge(baseWebpackConfig, {
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
       : false,
-    proxy: config.dev.proxyTable || {}
+    proxy: config.dev.proxyTable || {},
+    hot: true
   },
-  devtool: 'eval-source-map',
+  devtool: config.dev.devtool,
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
     })
-  ]
+  ],
+  optimization: {
+    minimize: false
+  }
 });
