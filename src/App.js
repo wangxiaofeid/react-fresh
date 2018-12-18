@@ -42,6 +42,11 @@ export default class App extends Component {
 
   render() {
     const { menus } = this.props.appStore;
+    const pathname = this.props.location.pathname;
+    let defaultSelectedKeys = [];
+    if (pathname) {
+      defaultSelectedKeys = pathname.split('/');
+    }
     return <Layout>
       <Sider 
         trigger={null}
@@ -50,7 +55,7 @@ export default class App extends Component {
       >
         <h1 className="logo">后台管理</h1>
         <Menu
-          defaultSelectedKeys={[]}
+          defaultSelectedKeys={defaultSelectedKeys}
           defaultOpenKeys={[]}
           mode="inline"
           theme="dark"

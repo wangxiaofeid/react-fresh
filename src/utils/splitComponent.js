@@ -1,8 +1,9 @@
 import React from "react";
+import { Spin } from "antd";
 import Loadable from 'react-loadable';
 
 const Loading = () => {
-  return <div>加载中</div>
+  return <Spin><div style={{minHeight: 200}}></div></Spin>
 }
 
 export default function SplitComponent(load) {

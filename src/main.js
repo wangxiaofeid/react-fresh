@@ -16,3 +16,7 @@ ReactDOM.render(
   </Provider>,
   MOUNT_NODE
 );
+
+if(module.hot) { 
+  module.hot.accept();
+}
