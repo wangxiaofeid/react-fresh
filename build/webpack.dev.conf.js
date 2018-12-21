@@ -14,11 +14,8 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     inline:true,
     port: config.dev.port,
-    contentBase: path.join(__dirname, '../dist'),
+    contentBase: [path.join(__dirname, '../dist'), path.join(__dirname, '../static')],
     open: config.dev.autoOpenBrowser,
-    overlay: config.dev.errorOverlay
-      ? { warnings: false, errors: true }
-      : false,
     proxy: config.dev.proxyTable || {},
     hot: true
   },

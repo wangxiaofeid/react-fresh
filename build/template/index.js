@@ -2,7 +2,8 @@ import React from "react"
 import { observer, inject } from "mobx-react"
 import cn from 'classnames'
 import { Form, Row, Col, Input, Select, Button, Table, Icon, Spin } from 'antd'
-import Edit from "./edit";
+import Edit from "./edit"
+import "./index.less"
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -59,7 +60,7 @@ export default class __pageName2__ extends React.Component{
 
   render() {
     const { showEdit, loading } = this.props.__pageName__Store;
-    return <Spin spinning={loading} className="__pageName__">
+    return <Spin spinning={loading} wrapperClassName="__pageName__">
       <div className={cn('page', { 'hidden': showEdit })}>
         <div className="page-form">
           <div className="new-btns">
