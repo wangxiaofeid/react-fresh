@@ -30,7 +30,7 @@
   "homepage": "https://github.com/wangxiaofeid/react-fresh#readme",
   "dependencies": {
     "@xiaofei.wang/float.js": "^1.0.0",
-    "antd": "3.8.2",
+    "antd": "^3.11.4",
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "mobx": "^5.0.3",

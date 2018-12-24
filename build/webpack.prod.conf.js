@@ -50,7 +50,8 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(__dirname, '../index.html')
+      template: path.resolve(__dirname, '../index.html'),
+      dllPath: '/dll'
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
