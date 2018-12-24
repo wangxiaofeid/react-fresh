@@ -42,7 +42,9 @@ module.exports = merge(baseWebpackConfig, {
       /moment[\/\\]locale$/,
       /zh-en|en-us/
     ),
-    new HardSourceWebpackPlugin(),
+    new HardSourceWebpackPlugin({
+      cacheDirectory: 'node_modules/.cacheprod/hard-source/[confighash]',
+    }),
     new CleanWebpackPlugin(['js', 'css'], {
       root:     path.resolve(__dirname, '../dist/'),
       verbose:  true,
