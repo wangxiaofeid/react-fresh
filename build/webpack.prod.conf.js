@@ -4,7 +4,6 @@ const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -42,9 +41,6 @@ module.exports = merge(baseWebpackConfig, {
       /moment[\/\\]locale$/,
       /zh-en|en-us/
     ),
-    new HardSourceWebpackPlugin({
-      cacheDirectory: 'node_modules/.cacheprod/hard-source/[confighash]',
-    }),
     new CleanWebpackPlugin(['js', 'css'], {
       root:     path.resolve(__dirname, '../dist/'),
       verbose:  true,
@@ -59,6 +55,6 @@ module.exports = merge(baseWebpackConfig, {
       filename: "css/[name].css",
       chunkFilename: "css/[id].css"
     }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ]
 });

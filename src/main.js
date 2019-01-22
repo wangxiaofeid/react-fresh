@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router } from "@babel/core";
+import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "mobx-react";
 import "./styles/index.less";
 import App from "./App";
