@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Layout, Menu, Icon, Breadcrumb, Avatar } from "antd"
-import { withRouter } from 'react-router'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Layout, Menu, Icon, Breadcrumb, Avatar } from "antd";
+import { withRouter } from "react-router";
 import { inject, observer } from "mobx-react";
 import _ from "lodash";
-import Router from "./router"
+import Router from "./router";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;

@@ -1,8 +1,8 @@
-import { observable, action } from "mobx"
-import { message } from 'antd'
-import axios from 'axios'
-import _ from 'lodash'
-const methods = ['get', 'delete']
+import { observable, action } from "mobx";
+import { message } from "antd";
+import axios from "axios";
+import _ from "lodash";
+const methods = ['get', 'delete'];
 
 export default class AbstractList {
   @observable pageSize = 10;

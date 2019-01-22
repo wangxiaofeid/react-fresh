@@ -1,6 +1,6 @@
-import React from "react"
-import { observer, inject } from "mobx-react"
-import { Form, Button, Loading, Select, Input } from 'antd'
+import React from "react";
+import { observer, inject } from "mobx-react";
+import { Form, Button, Loading, Select, Input } from "antd";
 
 const FormItem = Form.Item;
 const Option = Select.Option;

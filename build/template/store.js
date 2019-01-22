@@ -1,4 +1,4 @@
-import { observable, action } from "mobx"
+import { observable, action } from "mobx";
 import AbstractList from "@/stores/abstractList";
 
 export default class __pageName2__Store extends AbstractList{

@@ -14,11 +14,13 @@ module.exports = merge(baseWebpackConfig, {
   },
   devServer: {
     inline:true,
+    host: config.dev.host,
     port: config.dev.port,
     contentBase: [path.join(__dirname, '../dist'), path.join(__dirname, '../static')],
     open: config.dev.autoOpenBrowser,
     proxy: config.dev.proxyTable || {},
-    hot: true
+    hot: true,
+    disableHostCheck: true
   },
   devtool: config.dev.devtool,
   plugins: [

@@ -1,4 +1,4 @@
-import { observable, action } from "mobx"
+import { observable, action } from "mobx";
 
 export class AppStore {
   @observable num = 1;
@@ -58,7 +58,7 @@ const req = require.context('.', false, /Store$/);
 req.keys().map(key => {
   const Store = req(key).default;
   const namespace = Store.namespace || key;
-  appStore[namespace] = stores[namespace] = new Store(appStore);
+  appStore[namespace] = Stores[namespace] = new Store(appStore);
 });
 
 /* page下store */ 

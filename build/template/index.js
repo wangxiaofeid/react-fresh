@@ -1,9 +1,9 @@
-import React from "react"
-import { observer, inject } from "mobx-react"
-import cn from 'classnames'
-import { Form, Row, Col, Input, Select, Button, Table, Icon, Spin } from 'antd'
-import Edit from "./edit"
-import "./index.less"
+import React from "react";
+import { observer, inject } from "mobx-react";
+import cn from "classnames";
+import { Form, Row, Col, Input, Select, Button, Table, Icon, Spin } from "antd";
+import Edit from "./edit";
+import "./index.less";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
