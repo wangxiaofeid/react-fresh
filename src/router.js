@@ -2,11 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import SplitComponent from "./utils/splitComponent";
 
-const router = [<Route
-  key="index"
-  path="/"
-  exact
-  render={() => <Redirect to="/demo" />} />];
+const router = [<Route key="index" path="/" exact render={() => <Redirect to="/demo" />} />];
 
 const req = require.context('./pages', true, /router$/);
 req.keys().map(key => {
@@ -15,5 +11,5 @@ req.keys().map(key => {
 });
 
 export default function Router() {
-  return router
+  return router;
 }

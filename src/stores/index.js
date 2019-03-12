@@ -2,7 +2,9 @@ import { observable, action } from "mobx";
 
 export class AppStore {
   @observable num = 1;
+
   @observable loading = false;
+
   menus = [{
     label: '一级目录1',
     key: '1',
@@ -51,7 +53,7 @@ export class AppStore {
 const appStore = AppStore.getInstance();
 const Stores = {
   appStore
-}
+};
 
 /* 当前文件夹下store */ 
 const req = require.context('.', false, /Store$/);

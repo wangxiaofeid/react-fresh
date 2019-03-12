@@ -1,7 +1,7 @@
-import { observable, action } from "mobx"
+import { observable, action } from "mobx";
 import AbstractList from "@/stores/abstractList";
 
-export default class DemoStore extends AbstractList{
+export default class DemoStore extends AbstractList {
   static namespace = 'demoStore';
   
   constructor() {
@@ -22,8 +22,6 @@ export default class DemoStore extends AbstractList{
         url: '/api/user/delete',
         method: 'post'
       }
-    })
+    });
   }
-
-
 }

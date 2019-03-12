@@ -8,4 +8,4 @@ const router = <Route
                   component={SplitComponent(() => import(/* webpackChunkName: "__pageName__" */'./index'))} 
                 />
 
-export default router
+export default router;

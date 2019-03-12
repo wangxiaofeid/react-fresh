@@ -24,6 +24,4 @@ export default class __pageName2__Store extends AbstractList{
       }
     })
   }
-
-
 }

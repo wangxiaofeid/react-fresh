@@ -2,24 +2,31 @@ import { observable, action } from "mobx";
 import { message } from "antd";
 import axios from "axios";
 import _ from "lodash";
+
 const methods = ['get', 'delete'];
 
 export default class AbstractList {
   @observable pageSize = 10;
+
   @observable currentPage = 1;
+
   @observable total = 0;
+
   @observable dataList = [];
+
   @observable loading = false;
+
   @observable searchForm = {};
 
   editType = 'add';
+
   editItem = {};
+
   @observable showEdit = false;
 
-
   rowKey = 'id';
-  ajaxConfig = {
-  };
+  
+  ajaxConfig = {};
 
   constructor(config) {
     this.ajaxConfig = Object.assign(this.ajaxConfig, config);
@@ -27,9 +34,9 @@ export default class AbstractList {
   }
 
   @action changeAttr(obj) {
-    for(let key in obj) {
-      this[key] = obj[key]
-    }
+    obj.keys().forEach(key => {
+      this[key] = obj[key];
+    });
   }
 
   @action async search(currentPage, pageSize, searchForm) {
@@ -128,7 +135,7 @@ export default class AbstractList {
       });
       if (res.status == 200 && res.data.status) {
         message.success('删除成功！');
-        _.remove(this.dataList, i => i[rowKey] == data[rowKey])
+        _.remove(this.dataList, i => i[rowKey] == data[rowKey]);
       } else {
         message.error('请求失败！');
       }
