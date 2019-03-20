@@ -34,7 +34,7 @@ export default class AbstractList {
   }
 
   @action changeAttr(obj) {
-    obj.keys().forEach(key => {
+    obj.keys(obj).forEach(key => {
       this[key] = obj[key];
     });
   }
