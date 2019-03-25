@@ -12,7 +12,9 @@ const formItemLayout = {
   wrapperCol: { span: 16 }
 }
 
-@inject('demoStore')
+@inject(stores => ({
+  store: stores.demoStore
+}))
 @observer
 export default class Demo extends React.Component{
   constructor(props) {
@@ -20,7 +22,7 @@ export default class Demo extends React.Component{
   }
 
   renderTable = () => {
-    const { pageSize, currentPage, total, dataList, rowKey } = this.props.demoStore;
+    const { pageSize, currentPage, total, dataList, rowKey } = this.props.store;
     return (
       <Table 
         dataSource={dataList.toJS()} 
@@ -42,14 +44,14 @@ export default class Demo extends React.Component{
         <Column title="操作" dataIndex="actions" key="actions" render={(text, item) => {
           return <span className="action-btns">
             <a href="javascript:;" onClick={() => { 
-              this.props.demoStore.changeAttr({
+              this.props.store.changeAttr({
                 editType: 'edit',
                 editItem: item,
                 showEdit: true
               }) 
             }}><Icon type="edit"/></a>
             <a href="javascript:;" onClick={() => { 
-              this.props.demoStore.delete(item[rowKey])
+              this.props.store.delete(item[rowKey])
             }}><Icon type="delete"/></a>
           </span>
         }}/>
@@ -58,7 +60,7 @@ export default class Demo extends React.Component{
   }
 
   render() {
-    const { showEdit, loading } = this.props.demoStore;
+    const { showEdit, loading } = this.props.store;
     return <Spin spinning={loading} className="demo">
       <div className={cn('page', { 'hidden': showEdit })}>
         <div className="page-form">
@@ -79,11 +81,11 @@ export default class Demo extends React.Component{
   }
 
   componentDidMount() {
-    this.props.demoStore.search();
+    this.props.store.search();
   }
 
   create = () => {
-    this.props.demoStore.changeAttr({
+    this.props.store.changeAttr({
       editType: 'add',
       editItem: {},
       showEdit: true
@@ -91,18 +93,18 @@ export default class Demo extends React.Component{
   }
 
   submit = (values) => {
-    const { pageSize } = this.props.demoStore;
-    this.props.demoStore.search(1, pageSize, values);
+    const { pageSize } = this.props.store;
+    this.props.store.search(1, pageSize, values);
   }
 
   pageOnChange = (current) => {
-    const { searchForm, pageSize } = this.props.demoStore;
-    this.props.demoStore.search(current, pageSize, searchForm)
+    const { searchForm, pageSize } = this.props.store;
+    this.props.store.search(current, pageSize, searchForm)
   }
 
   showSizeChange = (current, pageSize) => {
-    const { searchForm } = this.props.demoStore;
-    this.props.demoStore.search(1, pageSize, searchForm)
+    const { searchForm } = this.props.store;
+    this.props.store.search(1, pageSize, searchForm)
   }
 }
 

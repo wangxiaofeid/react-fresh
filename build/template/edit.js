@@ -6,14 +6,16 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 @Form.create()
-@inject('__pageName__Store')
+@inject(stores => ({
+  store: stores.__pageName__Store
+}))
 @observer
 export default class Edit extends React.Component {
   
   render() {
-    const { __pageName__Store, form } = this.props;
+    const { store, form } = this.props;
     const { getFieldDecorator } = form;
-    const { editType, editItem, loading }=  __pageName__Store;
+    const { editType, editItem, loading }=  store;
     return (
       <div className="edit-box">
         <Form onSubmit={this.onSubmit}>
@@ -41,20 +43,20 @@ export default class Edit extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { editType } = this.props.__pageName__Store;
+    const { editType } = this.props.store;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if (editType == 'add') {
-          this.props.__pageName__Store.add(values);
+          this.props.store.add(values);
         } else {
-          this.props.__pageName__Store.edit(values);
+          this.props.store.edit(values);
         }
       }
     });
   }
 
   back = () => {
-    this.props.__pageName__Store.changeAttr({
+    this.props.store.changeAttr({
       showEdit: false
     });
   }

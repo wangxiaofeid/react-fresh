@@ -47,7 +47,7 @@ export default class App extends Component {
     if (pathname) {
       defaultSelectedKeys = pathname.split('/');
     }
-    return <Layout>
+    return <Layout className="app-layout">
       <Sider 
         trigger={null}
         collapsible
