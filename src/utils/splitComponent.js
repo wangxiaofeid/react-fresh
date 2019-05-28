@@ -1,16 +1,16 @@
-import React from "react";
-import { Spin } from "antd";
-import Loadable from "react-loadable";
+import React from 'react';
+import { Spin } from 'antd';
+import Loadable from 'react-loadable';
 
 const Loading = () => (
-  <Spin>
-    <div style={{ minHeight: 200 }} />
-  </Spin>
+    <Spin>
+        <div style={{ minHeight: 200 }} />
+    </Spin>
 );
 
 export default function SplitComponent(load) {
-  return Loadable({
-    loader: load,
-    loading: Loading
-  });
+    return Loadable({
+        loader: load,
+        loading: Loading,
+    });
 }

@@ -1,63 +1,71 @@
-import React from "react";
-import { observer, inject } from "mobx-react";
-import { Form, Button, Loading, Select, Input } from "antd";
+import React from 'react';
+import { observer, inject } from 'mobx-react';
+import { Form, Button, Drawer, Select, Input } from 'antd';
+import { formItemLayout } from '@/utils/constants';
 
 const FormItem = Form.Item;
-const Option = Select.Option;
 
 @Form.create()
 @inject(stores => ({
-  store: stores.__pageName__Store
+    store: stores.__pageName__Store,
 }))
 @observer
 export default class Edit extends React.Component {
-  
-  render() {
-    const { store, form } = this.props;
-    const { getFieldDecorator } = form;
-    const { editType, editItem, loading }=  store;
-    return (
-      <div className="edit-box">
-        <Form onSubmit={this.onSubmit}>
-          <div className="formitem">
-            <div className="label">合作方 *</div>
-            <div className="right">
-              {getFieldDecorator("id", {
-                initialValue: editItem.id || ''
-              })(
-                <Input size="default" placeholder=''/>
-              )}
-            </div>
-          </div>
-          <div className="formitem">
-            <div className="label"></div>
-            <div className="right">
-              <Button type="primary" htmlType="submit">{editType === 'add'? '新建' : '保存'}</Button>
-              <Button className="ml10" onClick={this.back}>取消</Button>
-            </div>
-          </div>
-        </Form>
-      </div>
-    )
-  }
+    render() {
+        const { store, form } = this.props;
+        const { getFieldDecorator } = form;
+        const { editType, editItem, showEdit } = store;
+        return (
+            <Drawer
+                className="edit-box"
+                visible={showEdit}
+                width={600}
+                onClose={this.back}
+                title={editType == 'add' ? '新建' : '编辑'}
+            >
+                <Form onSubmit={this.onSubmit} {...formItemLayout}>
+                    <FormItem label="合作方">
+                        {getFieldDecorator('name', {
+                            initialValue: editItem.name || '',
+                            rules: [
+                                {
+                                    required: true,
+                                    message: '必填!',
+                                },
+                            ],
+                        })(<Input size="default" placeholder="" />)}
+                    </FormItem>
+                </Form>
+                <div className="drawer-footer">
+                    <Button onClick={this.onSubmit} type="primary">
+                        {editType === 'add' ? '新建' : '保存'}
+                    </Button>
+                    <Button onClick={this.back} className="ml10">
+                        取消
+                    </Button>
+                </div>
+            </Drawer>
+        );
+    }
 
-  onSubmit = e => {
-    e.preventDefault();
-    const { editType } = this.props.store;
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        if (editType == 'add') {
-          this.props.store.add(values);
-        } else {
-          this.props.store.edit(values);
-        }
-      }
-    });
-  }
+    onSubmit = e => {
+        e.preventDefault();
+        const { editType } = this.props.store;
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                if (editType == 'add') {
+                    this.props.store.add(values);
+                } else {
+                    this.props.store.edit(values);
+                }
+            }
+        });
+    };
 
-  back = () => {
-    this.props.store.changeAttr({
-      showEdit: false
-    });
-  }
+    back = () => {
+        this.props.store.changeAttr({
+            showEdit: false,
+        });
+        this.props.form.resetFields();
+    };
 }

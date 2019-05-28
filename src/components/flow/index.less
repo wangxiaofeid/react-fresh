@@ -1,0 +1,42 @@
+.editor {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 500px;
+    border: 1px solid #e6e9ed;
+    overflow: hidden;
+}
+
+.editor-hd {
+    padding: 8px;
+    border-bottom: 1px solid #e6e9ed;
+    font-size: 18px;
+}
+
+.editor-bd {
+    flex: 1;
+    height: 100%;
+}
+
+.editor-sidebar,
+.editor-content {
+    display: flex !important;
+    flex-direction: column;
+    // overflow: auto;
+    height: 100%;
+}
+
+.editor-sidebar {
+    &:first-child {
+        border-right: 1px solid #e6e9ed;
+        overflow: auto;
+    }
+
+    &:last-child {
+        border-left: 1px solid #e6e9ed;
+    }
+}
+
+.flow {
+    flex: 1;
+}
