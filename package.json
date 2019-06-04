@@ -6,10 +6,10 @@
     "scripts": {
         "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
         "start": "npm run dev",
-        "build": "export NODE_ENV=production && webpack --config build/webpack.prod.conf.js",
-        "dll": "export NODE_ENV=production && node ./build/webpack.dll.conf.js",
-        "dll:dev": "export NODE_ENV=development && node ./build/webpack.dll.conf.js",
-        "build:watch": "export NODE_ENV=production && webpack --config build/webpack.prod.conf.js --watch --progress",
+        "build": "export NODE_ENV=production webpack --config build/webpack.prod.conf.js",
+        "dll": "export NODE_ENV=production node ./build/webpack.dll.conf.js",
+        "dll:dev": "export NODE_ENV=development node ./build/webpack.dll.conf.js",
+        "build:watch": "export NODE_ENV=production webpack --config build/webpack.prod.conf.js --watch --progress",
         "push": "git add . && git commit -m ${m} && git push",
         "create": "node build/create.js"
     },
