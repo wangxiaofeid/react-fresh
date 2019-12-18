@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon, Breadcrumb, Avatar } from 'antd';
-import { withRouter } from 'react-router';
-import { inject, observer } from 'mobx-react';
-import _ from 'lodash';
-import Router from './router';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Layout, Menu, Icon, Breadcrumb, Avatar } from "antd";
+import { withRouter } from "react-router";
+import { inject, observer } from "mobx-react";
+import _ from "lodash";
+import Router from "./router";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 @withRouter
-@inject('appStore')
+@inject("appStore")
 @observer
 export default class App extends Component {
     state = {
@@ -55,7 +55,7 @@ export default class App extends Component {
         const pathname = this.props.location.pathname;
         let defaultSelectedKeys = [];
         if (pathname) {
-            defaultSelectedKeys = pathname.split('/');
+            defaultSelectedKeys = pathname.split("/");
         }
         return (
             <Layout className="app-layout">
@@ -66,19 +66,19 @@ export default class App extends Component {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Header style={{ background: "#fff", padding: 0 }}>
                         <div className="fr" style={{ marginRight: 20 }}>
-                            <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+                            <Avatar style={{ backgroundColor: "#87d068" }} icon="user" />
                         </div>
                         <Icon
                             className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
                             onClick={this.toggleCollapsed}
                         />
                     </Header>
                     <Content
                         style={{
-                            margin: '15px 16px 0',
+                            margin: "15px 16px 0",
                         }}
                     >
                         {this.renderBreadcrumb()}
@@ -86,7 +86,7 @@ export default class App extends Component {
                             className="inner"
                             style={{
                                 padding: 24,
-                                background: '#fff',
+                                background: "#fff",
                                 minHeight: 280,
                                 marginTop: 15,
                             }}

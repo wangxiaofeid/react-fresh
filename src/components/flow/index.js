@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd';
-import GGEditor, { Flow, withPropsAPI, RegisterNode } from 'gg-editor';
-import FlowToolbar from './components/EditorToolbar';
-import EditorItemPanel from './components/EditorItemPanel';
+import React, { Component } from "react";
+import { Row, Col } from "antd";
+import GGEditor, { Flow, withPropsAPI, RegisterNode } from "gg-editor";
+import FlowToolbar from "./components/EditorToolbar";
+import EditorItemPanel from "./components/EditorItemPanel";
 // import FlowDetailPanel from './components/EditorDetailPanel';
-import './index.less';
+import "./index.less";
 
 export default class FlowEdit extends Component {
     static defaultProps = {
         canEditFlow: true, // 是否可编辑flow图
-        toolbar: ['undo', 'redo', 'delete', 'zoomIn', 'zoomOut', 'autoZoom', 'resetZoom'],
+        toolbar: ["undo", "redo", "delete", "zoomIn", "zoomOut", "autoZoom", "resetZoom"],
         value: {},
         event: {},
     };
@@ -43,7 +43,7 @@ export default class FlowEdit extends Component {
             toolBarButton,
             style = {},
         } = this.props;
-        console.log('flow render...', value);
+        console.log("flow render...", value);
         return (
             <GGEditor className="editor" style={style}>
                 <Row type="flex" className="editor-bd">

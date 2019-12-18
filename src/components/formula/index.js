@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { findDomNode } from 'react-dom';
-import codemirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
-import { Menu } from 'antd';
-import './index.less';
+import React, { Component } from "react";
+import { findDomNode } from "react-dom";
+import codemirror from "codemirror";
+import "codemirror/lib/codemirror.css";
+import { Menu } from "antd";
+import "./index.less";
 
 /*
   {
@@ -35,17 +35,17 @@ const defaultConfig = {
 };
 
 const defineMode = function(prefix) {
-    codemirror.defineMode('defineScript', function() {
-        var e = ['>=', '<=', '!=', '=', '>', '<', '+', '-', '*', '/', '(', ')', ';', ',', ':', '{', '}'];
+    codemirror.defineMode("defineScript", function() {
+        var e = [">=", "<=", "!=", "=", ">", "<", "+", "-", "*", "/", "(", ")", ";", ",", ":", "{", "}"];
         return {
             token: function(t) {
                 if (t.eatSpace()) return null;
 
-                if (t.match('//')) return t.skipToEnd(), 'comment';
+                if (t.match("//")) return t.skipToEnd(), "comment";
 
-                for (var n = 0; n < e.length; n++) if (t.match(e[n])) return 'mark-keyword';
+                for (var n = 0; n < e.length; n++) if (t.match(e[n])) return "mark-keyword";
 
-                if (t.match('true') || t.match('false')) return 'boolean-keyword';
+                if (t.match("true") || t.match("false")) return "boolean-keyword";
 
                 for (let i = 0; i < prefix.length; i++) {
                     const list = prefix[i].list;
@@ -58,17 +58,17 @@ const defineMode = function(prefix) {
                 }
 
                 if (t.match(/^[0-9\.+-]/, !1)) {
-                    if (t.match(/^[+-]?0x[0-9a-fA-F]+/)) return 'number';
-                    if (t.match(/^[+-]?\d*\.\d+([EeDd][+-]?\d+)?/)) return 'number';
-                    if (t.match(/^[+-]?\d+([EeDd][+-]?\d+)?/)) return 'number';
+                    if (t.match(/^[+-]?0x[0-9a-fA-F]+/)) return "number";
+                    if (t.match(/^[+-]?\d*\.\d+([EeDd][+-]?\d+)?/)) return "number";
+                    if (t.match(/^[+-]?\d+([EeDd][+-]?\d+)?/)) return "number";
                 }
 
-                if (t.match(/^"([^"]|(""))*"/)) return 'string';
+                if (t.match(/^"([^"]|(""))*"/)) return "string";
 
-                if (t.match(/^'([^']|(''))*'/)) return 'string';
+                if (t.match(/^'([^']|(''))*'/)) return "string";
 
                 t.next();
-                return 'nomal-keyword';
+                return "nomal-keyword";
             },
         };
     });
@@ -80,7 +80,7 @@ export default class Formula extends Component {
         this.state = {
             left: 0,
             top: 0,
-            keyword: '',
+            keyword: "",
             suggestions: [],
             selectedIndex: 0,
             showTip: false,
@@ -97,7 +97,7 @@ export default class Formula extends Component {
             document.getElementById(`fb_${this.randomId}`),
             Object.assign(
                 {
-                    mode: 'defineScript',
+                    mode: "defineScript",
                     lineNumbers: true,
                     matchBrackets: true,
                     readOnly: false,
@@ -106,7 +106,7 @@ export default class Formula extends Component {
                 config
             )
         );
-        this.editBox.setValue(value || '');
+        this.editBox.setValue(value || "");
         this.bindEvent();
     }
 
@@ -125,18 +125,18 @@ export default class Formula extends Component {
 
     bindEvent = () => {
         const self = this;
-        self.editBox.on('change', e => {
+        self.editBox.on("change", e => {
             self.props.onChange && self.props.onChange(e.getValue());
         });
-        self.editBox.on('cursorActivity', self.cursorActivity);
+        self.editBox.on("cursorActivity", self.cursorActivity);
 
-        self.editBox.on('blur', () => {
+        self.editBox.on("blur", () => {
             self.sto = setTimeout(() => {
                 self.hiddenTip();
             }, 150);
         });
 
-        self.editBox.on('focus', () => {
+        self.editBox.on("focus", () => {
             clearTimeout(self.sto);
             self.cursorActivity();
         });
@@ -147,11 +147,11 @@ export default class Formula extends Component {
                 if (showTip && suggestions.length > 0 && suggestions[selectedIndex]) {
                     self.itemClick(suggestions[selectedIndex]);
                 } else {
-                    self.editBox.execCommand('newlineAndIndent');
+                    self.editBox.execCommand("newlineAndIndent");
                 }
             },
         });
-        document.body.addEventListener('keydown', this.keydown, true);
+        document.body.addEventListener("keydown", this.keydown, true);
     };
 
     keydown = e => {
@@ -181,7 +181,7 @@ export default class Formula extends Component {
     cursorActivity = () => {
         const { prefix } = this.props;
         const cursor = this.editBox.getCursor(), // 获取光标
-            coords = this.editBox.cursorCoords(cursor, 'local'), // 获取光标定位
+            coords = this.editBox.cursorCoords(cursor, "local"), // 获取光标定位
             lineText = this.editBox.getLine(cursor.line), // 获取当前行的内容
             str = lineText.substring(0, cursor.ch); // 获取当前光标前字符串
         let index = -1,
@@ -242,7 +242,7 @@ export default class Formula extends Component {
     };
 
     render() {
-        const { className = '', style = {}, config = {} } = this.props;
+        const { className = "", style = {}, config = {} } = this.props;
         const { showTip, suggestions, left, top, selectedIndex } = this.state;
         const assignConfig = Object.assign({}, defaultConfig, config);
         const selectedKeys = [];
@@ -256,7 +256,7 @@ export default class Formula extends Component {
                 <div
                     className="formula-tip"
                     style={{
-                        display: showTip ? 'block' : 'none',
+                        display: showTip ? "block" : "none",
                         top: top + 20,
                         left: assignConfig.lineNumbers ? 29 + left : left,
                     }}
@@ -279,10 +279,10 @@ export default class Formula extends Component {
     }
 
     componentWillUnmount() {
-        this.editBox.off('change');
-        this.editBox.off('cursorActivity');
-        this.editBox.off('blur');
-        this.editBox.off('focus');
-        document.body.removeEventListener('keydown', this.keydown);
+        this.editBox.off("change");
+        this.editBox.off("cursorActivity");
+        this.editBox.off("blur");
+        this.editBox.off("focus");
+        document.body.removeEventListener("keydown", this.keydown);
     }
 }

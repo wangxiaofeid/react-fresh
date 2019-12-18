@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { findDomNode } from 'react-dom';
-import codemirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/mode/javascript/javascript';
-import './index.less';
+import React, { Component } from "react";
+import { findDomNode } from "react-dom";
+import codemirror from "codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/mode/javascript/javascript";
+import "./index.less";
 
 const defaultConfig = {
     readOnly: false,
@@ -20,7 +20,7 @@ export default class CodeInput extends Component {
     componentDidMount() {
         const { readonly } = this.props;
         this.editBox = codemirror.fromTextArea(document.getElementById(`fb_${this.randomId}`), {
-            mode: 'application/json',
+            mode: "application/json",
             lineNumbers: true,
             matchBrackets: true,
             readOnly: readonly || false,
@@ -34,13 +34,13 @@ export default class CodeInput extends Component {
 
     bindEvent = () => {
         const self = this;
-        self.editBox.on('change', e => {
+        self.editBox.on("change", e => {
             self.props.onChange && self.props.onChange(e.getValue());
         });
     };
 
     render() {
-        const { className = '', style = {}, config = {} } = this.props;
+        const { className = "", style = {}, config = {} } = this.props;
 
         return (
             <div className={`code-input ${className}`} style={style}>
@@ -50,6 +50,6 @@ export default class CodeInput extends Component {
     }
 
     componentWillUnmount() {
-        this.editBox.off('change');
+        this.editBox.off("change");
     }
 }

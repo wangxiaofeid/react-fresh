@@ -1,16 +1,19 @@
-import React from 'react';
-import { Spin } from 'antd';
-import Loadable from 'react-loadable';
+import React, { Suspense } from "react";
+import { Spin } from "antd";
 
-const Loading = () => (
-    <Spin>
-        <div style={{ minHeight: 200 }} />
-    </Spin>
-);
+const Loading = () => {
+    return (
+        <Spin tip="加载中...">
+            <div style={{ minHeight: "100vh" }} />
+        </Spin>
+    );
+};
 
-export default function SplitComponent(load) {
-    return Loadable({
-        loader: load,
-        loading: Loading,
-    });
+export default function SplitComponent(Comp) {
+    const LazyComp = React.lazy(Comp);
+    return props => (
+        <Suspense fallback={<Loading />}>
+            <LazyComp {...props} />
+        </Suspense>
+    );
 }

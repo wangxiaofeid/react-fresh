@@ -44,19 +44,23 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    // 'postcss-loader'
-                ],
+                use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
                 test: /\.less$/,
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
-                    { loader: 'less-loader', options: { javascriptEnabled: true } },
-                    // 'postcss-loader'
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            modules: false,
+                            javascriptEnabled: true,
+                            modifyVars: {
+                                hack: `true; @import "~@/styles/theme.less";`,
+                            },
+                        },
+                    },
                 ],
             },
             {

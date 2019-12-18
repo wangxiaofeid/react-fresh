@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd';
-import GGEditor, { Flow } from 'gg-editor';
-import EditorDetailPanel from './components/EditorDetailPanel';
-import NodeDetail from './components/NodeDetail';
-import EdgeDetail from './components/EdgeDetail';
-import './index.less';
+import React, { Component } from "react";
+import { Row, Col } from "antd";
+import GGEditor, { Flow } from "gg-editor";
+import EditorDetailPanel from "./components/EditorDetailPanel";
+import NodeDetail from "./components/NodeDetail";
+import EdgeDetail from "./components/EdgeDetail";
+import "./index.less";
 
 export default class FlowShow extends Component {
     static defaultProps = {

@@ -1,37 +1,37 @@
-import React from 'react';
+import React from "react";
 import { Tooltip, Divider, Icon } from "antd";
-import { Toolbar, Command } from 'gg-editor';
-import './index.less';
+import { Toolbar, Command } from "gg-editor";
+import "./index.less";
 const iconfont = {
-  iconfont: 'anticon',
-  iconDeleteO: 'delete',
-  iconCopyO: 'copy',
-  iconPasterO: 'snippets',
-  iconUndo: 'undo',
-  iconRedo: 'redo',
-  iconZoomInO: 'zoom-in',
-  iconZoomOutO: 'zoom-out',
-  iconFit: 'fullscreen',
-  iconActualSizeO: 'colum-height',
-}
+    iconfont: "anticon",
+    iconDeleteO: "delete",
+    iconCopyO: "copy",
+    iconPasterO: "snippets",
+    iconUndo: "undo",
+    iconRedo: "redo",
+    iconZoomInO: "zoom-in",
+    iconZoomOutO: "zoom-out",
+    iconFit: "fullscreen",
+    iconActualSizeO: "colum-height",
+};
 
 class FlowToolbar extends React.Component {
-  render() {
-    const { type, toolBarButton = '' } = this.props;
-    return (
-      <Toolbar className="toolbar">
-        <Command name="undo">
-          <Tooltip title="撤销" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconUndo}/>
-          </Tooltip>
-        </Command>
-        <Command name="redo">
-          <Tooltip title="重做" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconRedo}/>
-          </Tooltip>
-        </Command>
-        {/* <Divider type="vertical" /> */}
-        {/* <Command name="copy">
+    render() {
+        const { type, toolBarButton = "" } = this.props;
+        return (
+            <Toolbar className="toolbar">
+                <Command name="undo">
+                    <Tooltip title="撤销" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconUndo} />
+                    </Tooltip>
+                </Command>
+                <Command name="redo">
+                    <Tooltip title="重做" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconRedo} />
+                    </Tooltip>
+                </Command>
+                {/* <Divider type="vertical" /> */}
+                {/* <Command name="copy">
           <Tooltip title="复制" placement="bottom" overlayClassName="tooltip">
             <Icon type={iconfont.iconCopyO}/>
           </Tooltip>
@@ -41,33 +41,33 @@ class FlowToolbar extends React.Component {
             <Icon type={iconfont.iconPasterO}/>
           </Tooltip>
         </Command> */}
-        <Command name="delete">
-          <Tooltip title="删除" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconDeleteO}/>
-          </Tooltip>
-        </Command>
-        <Divider type="vertical" />
-        <Command name="zoomIn">
-          <Tooltip title="放大" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconZoomInO}/>
-          </Tooltip>
-        </Command>
-        <Command name="zoomOut">
-          <Tooltip title="缩小" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconZoomOutO}/>
-          </Tooltip>
-        </Command>
-        <Command name="autoZoom">
-          <Tooltip title="适应画布" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconFit}/>
-          </Tooltip>
-        </Command>
-        <Command name="resetZoom">
-          <Tooltip title="实际尺寸" placement="bottom" overlayClassName="tooltip">
-            <Icon type={iconfont.iconActualSizeO}/>
-          </Tooltip>
-        </Command>
-        {/* <Divider type="vertical" />
+                <Command name="delete">
+                    <Tooltip title="删除" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconDeleteO} />
+                    </Tooltip>
+                </Command>
+                <Divider type="vertical" />
+                <Command name="zoomIn">
+                    <Tooltip title="放大" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconZoomInO} />
+                    </Tooltip>
+                </Command>
+                <Command name="zoomOut">
+                    <Tooltip title="缩小" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconZoomOutO} />
+                    </Tooltip>
+                </Command>
+                <Command name="autoZoom">
+                    <Tooltip title="适应画布" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconFit} />
+                    </Tooltip>
+                </Command>
+                <Command name="resetZoom">
+                    <Tooltip title="实际尺寸" placement="bottom" overlayClassName="tooltip">
+                        <Icon type={iconfont.iconActualSizeO} />
+                    </Tooltip>
+                </Command>
+                {/* <Divider type="vertical" />
         <Command name="toBack">
           <Tooltip title="层级后置" placement="bottom" overlayClassName="tooltip">
             <i className={`${iconfont.iconfont} ${iconfont.iconToBack}`} />
@@ -94,12 +94,10 @@ class FlowToolbar extends React.Component {
             <i className={`${iconfont.iconfont} ${iconfont.iconUngroup}`} />
           </Tooltip>
         </Command> */}
-        {
-          toolBarButton
-        }
-      </Toolbar>
-    );
-  }
+                {toolBarButton}
+            </Toolbar>
+        );
+    }
 }
 
 export default FlowToolbar;

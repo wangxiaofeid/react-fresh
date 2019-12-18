@@ -1,9 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const apiMocker = require('mocker-api');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseWebpackConfig = require('./webpack.base.conf');
 const config = require('../config');
+
+const { MOCK } = process.env;
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
@@ -17,9 +20,15 @@ module.exports = merge(baseWebpackConfig, {
         port: config.dev.port,
         contentBase: [path.join(__dirname, '../dist'), path.join(__dirname, '../static')],
         open: config.dev.autoOpenBrowser,
-        proxy: config.dev.proxyTable || {},
         hot: true,
+        historyApiFallback: true,
         disableHostCheck: true,
+        host: '0.0.0.0',
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        proxy: MOCK ? {} : config.dev.proxyTable || {},
+        before(app) {
+            MOCK && apiMocker(app, path.resolve('./mocker/index.js'));
+        },
     },
     devtool: config.dev.devtool,
     plugins: [
